@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>
+        Learn about
+        <br>
+        building Web apps with ASP.NET Core.
+    </p>
+
+    <div class="mt-4">
+        <!-- View PDF Template Button -->
+        <a asp-controller="Home" asp-action="PDFTemplate" class="btn btn-primary me-2">
+            View PDF Template
+        </a>
+
+        <!-- Download PDF Button -->
+        <a asp-controller="Home" asp-action="DownloadPdf" class="btn btn-success">
+            Download PDF
+        </a>
+    </div>
+</div>

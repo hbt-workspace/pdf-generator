@@ -1,0 +1,25 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.invoice-box {
+    background: #fff;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+}
+
+.table th {
+    background-color: #f1f1f1;
+}
+
+@media print {
+    body {
+        background: none;
+    }
+
+    .no-print {
+        display: none;
+    }
+}

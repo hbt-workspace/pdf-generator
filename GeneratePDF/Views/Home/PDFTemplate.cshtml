@@ -1,0 +1,84 @@
+﻿@model InvoiceViewModel
+@{
+    ViewData["Title"] = "Invoice";
+    Layout = null; // Optional (for printable invoice)
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/common.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="invoice-box">
+
+            <div class="d-flex justify-content-between mb-4">
+                <div>
+                    <h3 class="fw-bold">INVOICE</h3>
+                    <p><strong>Invoice #:</strong> @Model.InvoiceNumber</p>
+                    <p><strong>Date:</strong> @Model.InvoiceDate.ToString("dd MMM yyyy")</p>
+                </div>
+                <div class="text-end">
+                    <h5>Billing To:</h5>
+                    <p>@Model.CustomerName</p>
+                    <p>@Model.CustomerAddress</p>
+                </div>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th class="text-center">Qty</th>
+                        <th class="text-end">Unit Price</th>
+                        <th class="text-end">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Description</td>
+                            <td class="text-center">@item.Quantity</td>
+                            <td class="text-end">@item.UnitPrice.ToString("N2")</td>
+                            <td class="text-end">@item.Total.ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="row justify-content-end">
+                <div class="col-md-4">
+                    <table class="table">
+                        <tr>
+                            <th>Subtotal:</th>
+                            <td class="text-end">@Model.SubTotal.ToString("N2")</td>
+                        </tr>
+                        <tr>
+                            <th>Tax (@Model.TaxPercent%):</th>
+                            <td class="text-end">@Model.TaxAmount.ToString("N2")</td>
+                        </tr>
+                        <tr class="fw-bold">
+                            <th>Grand Total:</th>
+                            <td class="text-end">@Model.GrandTotal.ToString("N2")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p>Thank you for your business!</p>
+            </div>
+
+            <div class="text-end mt-3 no-print">
+                <button class="btn btn-primary" onclick="window.print()">Print Invoice</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
